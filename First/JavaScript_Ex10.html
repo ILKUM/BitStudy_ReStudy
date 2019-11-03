@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var str = "10+20+30";
+	document.write(str+"<br>");
+	//1. eval()
+	//문자형 수식을 계산 >> "10+20A+30" (x)
+	//문자형 숫자 -> 숫자 
+	document.write("eval() : " + eval(str) + "<br>");
+	
+	//2. isNaN >> Not a Number -> true(너 숫자 아니니) , false(숫자)
+	document.write(isNaN("12345") + "<br>"); //false (숫자)
+	document.write(isNaN("12345A") + "<br>"); //true (문자)
+	document.write(isNaN("대한민국") + "<br>");//true (문자)
+	document.write(isNaN('12345') + "<br>");//false (숫자)
+	
+	//https://www.w3schools.com/jsref/jsref_obj_string.asp 
+	//문자열 함수 학습하기
+
+	//https://www.w3schools.com/jsref/jsref_obj_number.asp
+	//숫자 함수 학습하기
+	
+	/* 
+		Method		    Description
+		Number()		Returns a number, converted from its argument.
+		parseFloat()	Parses its argument and returns a floating point number
+		parseInt()		Parses its argument and returns an integer	
+	*/
+	var i = "100";
+	var j = "200";
+	
+	document.write("결합 : " + (i+j)) //java , javascript + (산술 , 결합)
+	document.write("<br>숫자변환 : " + (Number(i) + Number(j)));
+	
+	//JavaScript Event
+	/* 
+	이벤트명		설명
+	onchange	요소가 바뀌면 실행
+	onclick		사용자가 누르면 HTML 요소가 실행 
+	onmouseover	사용자가 마우스을 올려놓으면 요소를 실행 
+	onmouseout	사용자가 마우스를 떠나면 요소가 실행 종료
+	onkeydown	사용자가 키보드를 누르면 실행
+	onload		브라우저가 완전히 로딩되면 실행
+	
+	
+	onload="alert('finishend HTME ELE loading\n the page')" 로딩을 다하면 팝업을 띄움
+	onfocus() > 포커스가 요소에 들어올때
+	
+	
+	*/
+	function focusFunction() {
+		document.getElementById("myinput").style.background="pink";
+	}
+	function blurFunction() {
+		document.getElementById("myinput").style.background="skyblue";
+		/* myinput의 태그의 스타일을 백그라운드 색을 준다. */
+	}
+	function selecTag() {
+		//onChange >> select 태그의 option 선택
+		alert(document.myform.sel.value);
+	}
+	//POINT (this 활용)
+	function changeColor(obj) {
+		console.log(obj)
+		obj.style.backgroundColor="orange"; //JavaScript css를 입히는법
+		//style = "backgroundColor : gold"
+	}
+	function changeColor2(obj) {
+		console.log(obj);
+		obj.style.backgroundColor="lightgreen";
+	}
+</script>
+</head>
+<body>
+	<form action="#" name="myform"> <!-- 아무데도 링크 안가기 때문에 # -->
+		<input type="text" id ="myinput" name="myinput" onblur="blurFunction()" onfocus="focusFunction()">
+		<select name="sel" onchange="selecTag()"> <!-- 바꾸면 실행하는 이벤트 -->
+			<option value="A">AA</option>
+			<option value="B">BB</option>
+			<option value="C">CC</option>
+			<option value="D">DD</option>
+		</select>
+		<hr>
+		<!-- 
+		** this POINT ** 
+		onmouseover="changeColor(this)"
+		this는 input type=text 태그를 의미
+		-->
+		<input type="text" onmouseover="changeColor(this)" onmouseout="changeColor2(this)">
+		<br><br>
+		<input type="text" onkeypress="alert(키보드에 반응이 있습니다.')">
+		<br><br>
+		<input type="text" value="10000" name="money">
+			
+	</form>
+</body>
+	<script type="text/javascript">
+	/*  
+		아래 코드는 onload 에서 실행
+		onload는 body 안에 있는 모든 요소가 실행되고 나서 ...
+	*/
+		var data = document.myform.money.value; /* 태그의 name인 myform에 money라는 name을 가진 값을 data에 선언 */
+		document.write(isNaN(data) + "<br>"); //1000A (true가 나오면 : 문자) 1000 (false가 나오면 : 숫자)
+	</script>
+</html>
