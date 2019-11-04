@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	String id = request.getParameter("userid");
+    	String id = request.getParameter("userid"); //파라미터 userid의 값을 변수 id에 저장 
     
-    	request.setAttribute("nick", "root");
+    	request.setAttribute("nick", "root"); //nick이라는 name에 root라는 값을 저장
     	session.setAttribute("runner", "box");
     	
     %>
@@ -21,10 +21,10 @@
 	
 	<hr>
 	<h3>EL 방식</h3>
-	EL request value : ${requestScope.nick } <br>
-	EL request value requestScope 생략 : ${nick } <br> 	
-	EL session value : ${sessionScope.runner }	<br>
-	EL session value SessionScope 생략: ${runner }	<br>
+	EL request value 습관적으로 : ${requestScope.nick } <br>
+	EL request value requestScope 생략 권장(x): ${nick } <br> 	
+	EL session value 습관적으로 : ${sessionScope.runner }	<br>
+	EL session value SessionScope 생략 권장(x): ${runner }	<br>
 	
 	<hr>
 	<h3>EL 기본 문법 & 표현식 </h3>
