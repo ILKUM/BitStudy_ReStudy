@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+		table , tr ,td {
+			border : 1px solid blue;
+			border-collapse : collapse;
+		}
+	</style>
+<script type="text/javascript">
+
+		/* 
+			remove() 	- Removes the selected element (and its child elements) 
+						//자기 자신을 포함한 자식을 지우는 함수
+							
+			empty() 	- Removes the child elements from the selected element 
+						//자식만 지우는 함수
+			
+		*/
+		$(document).ready(function() {
+				$('#btncreate').click(function() { //id btncreate 이벤트 클릭을 하면 함수 실행 
+					let row = $('#row').val(); //블록 변수 row에 id row의 값을 저장 
+					let col = $('#col').val();
+					
+					let strtable="<table>"; //변수에 테이블 태그 저장 
+						for(let i =0;i<row;i++){  //자바 for문 i값이 row값까지 증가 
+							strtable+="<tr>"; //strtable에 누적으로 <tr> 태그 저장 
+							for(let j=0;j<col;j++){// 중첩 for문 j값이 col값까지 증가 
+								strtable+="<td>(" + i + ")행(" + j + "열" + ")" + "</td>"; //누적으로 <td>태그와 i행 j열 </td> 누적 저장 
+							}
+							strtable+= "</tr>"; //누적으로 </tr> 저장 
+						}
+					strtable+="</table>" //누적으로 </table> 저장 
+					
+					$("#divtable").append(strtable); //append: id divtable 안에서 내용 뒤에 붙인다.
+				});
+				$("#btndelete").click(function() {					
+					//$("#divtable").remove(); 자기 자신을 포함해서 (모든 자식요소 삭제)
+					$("#divtable").empty(); //자기 자신을 빼고 자식요소를 삭제 
+				});
+				
+				$("#btnmenu").click(function() {
+					//$('#menu').clone().appendTo("#submenu"); //#menu를 복제해서 appendTo 타겟 뒤에 붙음
+					$('#menu').clone().prependTo("#submenu"); //#menu를 복제해서 prependTo 타겟 앞에 붙음
+					//appendTo(타겟)
+					//append(content)
+				});
+				
+				
+		});
+</script>
+</head>
+<body>
+	<span id="lbldisplay">Table Create</span>
+	<input type="text" id="row">행
+	<input type="text" id="col">열
+	<input type="button" value="동적생성" id="btncreate">
+	<input type="button" value="동적제거" id="btndelete">
+	<div id="divtable"></div>
+	<hr>
+	<input type="button" id="btnmenu" value="변경">
+	<div id="menu">HOME</div>
+	<div id="content">CONTENT</div>
+	<div id="submenu">SUBMENU</div>
+</body>
+</html>
